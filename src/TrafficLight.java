@@ -23,15 +23,15 @@ public class TrafficLight implements ITrafficLight {
 
 	public String Print_Status() {
 		String lightStr = "";
-		if (light == 0) {
+		if (Is_Red()) {
 			lightStr = "Red";
 		}
 
-		else if (light == 1) {
+		else if (Is_Yellow()) {
 			lightStr = "Yellow";
 		}
 
-		else if (light == 2) {
+		else if (Is_Green()) {
 			lightStr = "Green";
 		}
 
@@ -40,7 +40,14 @@ public class TrafficLight implements ITrafficLight {
 
 	public ITrafficLight copy() {
 		ITrafficLight newLight = new TrafficLight();
-		((TrafficLight) newLight).light = light;
+
+		if (Is_Yellow()) {
+			newLight.Go_To_Next();
+		}
+		else if (Is_Green()) {
+			newLight.Go_To_Next();
+			newLight.Go_To_Next();
+		}
 		return newLight;
 	}
 }
